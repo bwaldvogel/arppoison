@@ -1,6 +1,7 @@
+*.deps
+*.o
 .*
-bin/
+arppoison
 doc/
-obj/
 
 !.gitignore
