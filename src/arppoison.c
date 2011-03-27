@@ -1,5 +1,5 @@
 /*
- * no license, do whatever you want
+ * no license, do whatever you want except harming other people!
  * or just use arpspoof from dsniff, which is very similar
  *
  * REQUIRES
