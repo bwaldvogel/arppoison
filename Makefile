@@ -7,8 +7,6 @@ DEPFILES=src/arppoison.c
 #  CCFLAGS=-Wall -Werror -Os -fomit-frame-pointer -Wformat=2 -DNDEBUG
 CCFLAGS=-Wall -Werror -O0 -g -Wformat=2 -DDEBUG
 
-all:	compile doxygen
-
 compile: ${OBJ}
 	@# link
 	${CC} ${CCFLAGS} obj/*.o -o ${BIN} ${LIB}
@@ -22,5 +20,5 @@ clean:
 	rm -rf doc/html
 	rm -rf doc/latex
 
-doxygen:
+doc: ${OBJ} doc/arppoison
 	doxygen doc/arppoison

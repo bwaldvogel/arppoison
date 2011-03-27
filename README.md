@@ -11,5 +11,5 @@ programmed as exercise for my Computer Networking studies back in 2008.
 
 ## Install and run ##
 
-    # make compile
+    # make
     # sudo bin/arppoison
