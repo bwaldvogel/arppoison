@@ -276,13 +276,13 @@ static int arpspoof(libnet_t* l, const char* device, in_addr_t target_ip,
     static int last;
 
     if (verbose)
-        printf(" (%d bytes, %d total)\n", (c-last), c);
+        printf(" (%d bytes)\n", (c-last));
     else
         puts("");
 
     last = c;
 
-    return c;
+    return (c-last);
 }
 
 /**
@@ -337,7 +337,7 @@ int main(const int args, char** argv)
         return -1;
     }
 
-    int timeout = 4;      /* time in s to wait after each sent arp reply */
+    double timeout = 4.0; /* time in s to wait after each sent arp reply */
     char* device = NULL;  /* first device */
     char  errbuf[LIBNET_ERRBUF_SIZE];
 
@@ -364,9 +364,9 @@ int main(const int args, char** argv)
                 break;
 
             case 't':
-                timeout = atoi(optarg);
+                timeout = atof(optarg);
                 if (timeout <= 0) {
-                    fprintf(stderr, "invalid timeout value %d\n", timeout);
+                    fprintf(stderr, "invalid timeout value %lf\n", timeout);
                     goto failure;
                 }
                 break;
@@ -408,7 +408,7 @@ int main(const int args, char** argv)
     }
 
     if (verbose >= 1) {
-        printf("timeout is set to %ds\n", timeout);
+        printf("timeout is set to %.2lfs\n", timeout);
     }
 
     /* main loop */
@@ -416,7 +416,8 @@ int main(const int args, char** argv)
     {
         if (arpspoof(l, device, victim, target) == -1)
             break;
-        sleep(timeout);
+
+        usleep(timeout * 1000000lu);
     }
 
     safe_libnet_destroy(l);
