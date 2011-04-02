@@ -1,6 +1,6 @@
 ## Simple ARP cache poisoner ##
 
-programmed as exercise for my Computer Networking studies back in 2008.
+programmed as exercise for my Computer Networking studies back in 2006.
 
 ## Dependencies ##
 
